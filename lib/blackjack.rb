@@ -34,7 +34,7 @@ display_card_total(sum)
 end
 
 def invalid_command
-  return "Please enter a valid command"
+  puts "Please enter a valid command"
 end
 
 
@@ -47,9 +47,9 @@ def hit?(current_total)
       return current_total
     elsif stick_or_hit == "h"
       current_total += deal_card
-    elsif !stick_or_hit
+    else 
       invalid_command
-      prompt_user
+      hit?(current_total)
 end
 
 current_total
@@ -62,6 +62,14 @@ end
 #####################################################
 
 def runner
-  # code runner here
+  total = 0
+welcome
+total += initial_round
+total = hit?(total)
+display_card_total(total)
+  if total > 21
+    end_game(total)
+  end
+
 end
     
